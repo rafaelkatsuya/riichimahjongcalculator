@@ -990,7 +990,8 @@ class Ui_MainWindow(object):
     # Check if current hand is valid
     # It must be a four melds hand but there are two exceptions: chiitoitsu and kokushimuso
     def is_valid_hand(self):
-        if len(self.hand) == self.max_hand_size and (self.four_melds_hand(self.hand) or self.chiitoitsu_yaku(self.hand) or self.kokushimuso_yaku(self.hand)):
+        if len(self.hand) == self.max_hand_size and (self.four_melds_hand(self.hand) or self.chiitoitsu_yaku(self.hand)
+                                                     or self.kokushimuso_yaku(self.hand)):
             return True
         else:
             return False
@@ -2256,7 +2257,8 @@ class Ui_MainWindow(object):
         if self.is_valid_hand():
             self.plainTextEdit_Result.clear()
             self.plainTextEdit_Result.appendPlainText("Your hand holds:")
-            self.han_points()
+            self.total_han = self.han_points()
+
             if self.total_han == 0:
                 self.plainTextEdit_Result.appendPlainText("No yaku.")
 
@@ -2275,39 +2277,39 @@ class Ui_MainWindow(object):
             if self.is_mangan(points):
                 if 2 < self.total_han < 6:
                     if self.is_dealer():
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 1.5))
                     else:
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :" + str(constant.MANGAN_POINTS))
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: " + str(constant.MANGAN_POINTS))
                     self.plainTextEdit_Result.appendPlainText("MANGAN!")
                 elif 5 < self.total_han < 8:
                     if self.is_dealer():
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 1.5 * 1.5))
                     else:
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 1.5))
                     self.plainTextEdit_Result.appendPlainText("HANEMAN!!")
                 elif 7 < self.total_han < 11:
                     if self.is_dealer():
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 2 * 1.5))
                     else:
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :" + str(constant.MANGAN_POINTS * 2))
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: " + str(constant.MANGAN_POINTS * 2))
                     self.plainTextEdit_Result.appendPlainText("BAIMAN!!!")
                 elif 10 < self.total_han < 13:
                     if self.is_dealer():
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 3 * 1.5))
                     else:
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :" + str(constant.MANGAN_POINTS * 3))
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: " + str(constant.MANGAN_POINTS * 3))
                     self.plainTextEdit_Result.appendPlainText("SANBAIMAN!!!!")
                 elif self.total_han >= constant.YAKUMAN_HAN_POINTS:
                     if self.is_dealer():
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :"
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: "
                                                                   + str(constant.MANGAN_POINTS * 4 * 1.5))
                     else:
-                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS :" + str(constant.MANGAN_POINTS * 4))
+                        self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: " + str(constant.MANGAN_POINTS * 4))
                     self.plainTextEdit_Result.appendPlainText("YAKUMAN!!!!!")
             else:
                 self.plainTextEdit_Result.appendPlainText("\nTOTAL POINTS: " + str(points))
